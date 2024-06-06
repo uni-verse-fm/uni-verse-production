@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uni-verse-api
+spec:
+  selector:
+    matchLabels:
+      app: uni-verse-api
+  template:
+    metadata:
+      labels:
+        app: uni-verse-api
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: uni-verse-api
+          image: registry.qtmsheep.com/vagahbond/uni-verse/api
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '250m'
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: uni-verse-conf
+          volumeMounts:
+            - mountPath: /usr/src/app/logs
+              name: uni-verse-api-logs
+
+      volumes:
+        - name: uni-verse-api-logs
+          persistentVolumeClaim:
+            claimName: uni-verse-api-logs
