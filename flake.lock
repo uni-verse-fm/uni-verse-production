@@ -1,0 +1,61 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1717602782,
+        "narHash": "sha256-pL9jeus5QpX5R+9rsp3hhZ+uplVHscNJh8n8VpqscM0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e8057b67ebf307f01bdcc8fba94d94f75039d1f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "uni-verse-backend": "uni-verse-backend",
+        "uni-verse-frontend": "uni-verse-frontend"
+      }
+    },
+    "uni-verse-backend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717679325,
+        "narHash": "sha256-F33tCl4Itt+tAZWLZBcTF2bsVnLOoPIguTsvPjuyEvk=",
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-api",
+        "rev": "06eb57cf818d7e6c8671f40cbb71512e3dae4b14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-api",
+        "type": "github"
+      }
+    },
+    "uni-verse-frontend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717721595,
+        "narHash": "sha256-L5OSvS8eDrj6XXTf5b8telvv7cLbmoIsupp1BeK0QDo=",
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-frontend",
+        "rev": "4d3e570d376146228387bbede042f6d75a512e21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uni-verse-fm",
+        "repo": "uni-verse-frontend",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
