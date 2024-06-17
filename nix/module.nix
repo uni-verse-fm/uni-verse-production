@@ -9,6 +9,17 @@
 in {
   config = lib.mkIf cfg.enable {
     ###################################################################
+    # user                                                            #
+    ###################################################################
+
+    users.users.uni-verse = {
+      home = "/data/uni-verse";
+      group = "uni-verse";
+      isSystemUser = true;
+    };
+    users.groups.uni-verse.members = ["uni-verse"];
+
+    ###################################################################
     # Services                                                        #
     ###################################################################
 
@@ -23,6 +34,7 @@ in {
 
     virtualisation.oci-containers.containers = {
       uni-verse-api = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/api";
         dependsOn = ["mongo" "minio" "rabbitmq"];
@@ -36,6 +48,7 @@ in {
         ports = ["3000:3000" "3001:9229"];
       };
       uni-verse-frontend = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/frontend";
         dependsOn = ["mongo" "minio" "rabbitmq" "api"];
@@ -45,8 +58,8 @@ in {
         hostname = "ufrontend";
         ports = ["3006:3000"];
       };
-
       uni-verse-mongo = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "docker.io/library/mongo:latest";
         environmentFiles = [
@@ -60,6 +73,7 @@ in {
       };
 
       uni-verse-mongoExpress = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "docker.io/library/mongo-express:latest";
         environmentFiles = [
@@ -68,8 +82,8 @@ in {
         hostname = "umongo-express";
         ports = ["8086:8081"];
       };
-
       uni-verse-minio = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "quay.io/minio/minio:latest";
         environmentFiles = [
@@ -84,6 +98,7 @@ in {
         ports = ["9000:9000" "9001:9001"];
       };
       uni-verse-rabbitmq = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "docker.io/library/rabbitmq:latest";
         environmentFiles = [
@@ -97,6 +112,7 @@ in {
         ports = [];
       };
       uni-verse-elasticsearch = {
+        user = "uni-verse:uni-verse";
         autoStart = true;
         image = "docker.elastic.co/elasticsearch/elasticsearch:8.14.0";
         environment = {
