@@ -22,7 +22,7 @@ in {
     ];
 
     virtualisation.oci-containers.containers = {
-      api = {
+      uni-verse-api = {
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/api";
         dependsOn = ["mongo" "minio" "rabbitmq"];
@@ -35,7 +35,7 @@ in {
         hostname = "uapi";
         ports = ["3000:3000" "3001:9229"];
       };
-      frontend = {
+      uni-verse-frontend = {
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/frontend";
         dependsOn = ["mongo" "minio" "rabbitmq" "api"];
@@ -46,7 +46,7 @@ in {
         ports = ["3006:3000"];
       };
 
-      mongo = {
+      uni-verse-mongo = {
         autoStart = true;
         image = "docker.io/library/mongo:latest";
         environmentFiles = [
@@ -59,7 +59,7 @@ in {
         ports = [];
       };
 
-      mongoExpress = {
+      uni-verse-mongoExpress = {
         autoStart = true;
         image = "docker.io/library/mongo-express:latest";
         environmentFiles = [
@@ -69,7 +69,7 @@ in {
         ports = ["8086:8081"];
       };
 
-      minio = {
+      uni-verse-minio = {
         autoStart = true;
         image = "quay.io/minio/minio:latest";
         environmentFiles = [
@@ -83,7 +83,7 @@ in {
         hostname = "uminio";
         ports = ["9000:9000" "9001:9001"];
       };
-      rabbitmq = {
+      uni-verse-rabbitmq = {
         autoStart = true;
         image = "docker.io/library/rabbitmq:latest";
         environmentFiles = [
@@ -96,7 +96,7 @@ in {
         hostname = "urabbitmq";
         ports = [];
       };
-      elasticsearch = {
+      uni-verse-elasticsearch = {
         autoStart = true;
         image = "docker.elastic.co/elasticsearch/elasticsearch:8.14.0";
         environment = {
