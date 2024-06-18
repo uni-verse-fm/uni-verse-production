@@ -15,7 +15,7 @@ in {
     users.users.universe = {
       home = "/data/universe";
       group = "universe";
-      # isSystemUser = true;
+      isSystemUser = true;
     };
 
     users.groups.universe.members = ["universe" "podman"];
