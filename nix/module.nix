@@ -17,7 +17,7 @@ in {
       group = "universe";
       isSystemUser = true;
     };
-    users.groups.uni-verse.members = ["universe"];
+    users.groups.universe.members = ["universe"];
 
     ###################################################################
     # Services                                                        #
