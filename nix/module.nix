@@ -24,12 +24,12 @@ in {
     ###################################################################
 
     systemd.tmpfiles.rules = [
-      "d /data/uni-verse/api-logs 755 root root"
-      "d /data/uni-verse/mongo-data 755 root root"
-      "d /data/uni-verse/minio-data 755 root root"
-      "d /data/uni-verse/elasticsearch-data 755 root root"
-      "d /data/uni-verse/rabbitmq-data 755 root root"
-      "d /data/uni-verse/rabbitmq-logs 755 root root"
+      "d /data/uni-verse/api-logs 755 uni-verse uni-verse"
+      "d /data/uni-verse/mongo-data 755 uni-verse uni-verse"
+      "d /data/uni-verse/minio-data 755 uni-verse uni-verse"
+      "d /data/uni-verse/elasticsearch-data 755 uni-verse uni-verse"
+      "d /data/uni-verse/rabbitmq-data 755 uni-verse uni-verse"
+      "d /data/uni-verse/rabbitmq-logs 755 uni-verse uni-verse"
     ];
 
     virtualisation.oci-containers.containers = {
@@ -37,7 +37,7 @@ in {
         user = "uni-verse:uni-verse";
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/api";
-        dependsOn = ["mongo" "minio" "rabbitmq"];
+        dependsOn = ["uni-verse-mongo" "uni-verse-minio" "uni-verse-rabbitmq"];
         environmentFiles = [
           cfg.envFile
         ];
@@ -51,7 +51,7 @@ in {
         user = "uni-verse:uni-verse";
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/frontend";
-        dependsOn = ["mongo" "minio" "rabbitmq" "api"];
+        dependsOn = ["uni-verse-mongo" "uni-verse-minio" "uni-verse-rabbitmq" "uni-verse-api"];
         environmentFiles = [
           cfg.envFile
         ];
