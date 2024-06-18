@@ -12,29 +12,29 @@ in {
     # user                                                            #
     ###################################################################
 
-    users.users.uni-verse = {
-      home = "/data/uni-verse";
-      group = "uni-verse";
+    users.users.universe = {
+      home = "/data/universe";
+      group = "universe";
       isSystemUser = true;
     };
-    users.groups.uni-verse.members = ["uni-verse"];
+    users.groups.uni-verse.members = ["universe"];
 
     ###################################################################
     # Services                                                        #
     ###################################################################
 
     systemd.tmpfiles.rules = [
-      "d /data/uni-verse/api-logs 755 uni-verse uni-verse"
-      "d /data/uni-verse/mongo-data 755 uni-verse uni-verse"
-      "d /data/uni-verse/minio-data 755 uni-verse uni-verse"
-      "d /data/uni-verse/elasticsearch-data 755 uni-verse uni-verse"
-      "d /data/uni-verse/rabbitmq-data 755 uni-verse uni-verse"
-      "d /data/uni-verse/rabbitmq-logs 755 uni-verse uni-verse"
+      "d /data/uni-verse/api-logs 755 universe universe"
+      "d /data/uni-verse/mongo-data 755 universe universe"
+      "d /data/uni-verse/minio-data 755 universe universe"
+      "d /data/uni-verse/elasticsearch-data 755 universe universe"
+      "d /data/uni-verse/rabbitmq-data 755 universe universe"
+      "d /data/uni-verse/rabbitmq-logs 755 universe universe"
     ];
 
     virtualisation.oci-containers.containers = {
       uni-verse-api = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/api";
         dependsOn = ["uni-verse-mongo" "uni-verse-minio" "uni-verse-rabbitmq"];
@@ -48,7 +48,7 @@ in {
         ports = ["3000:3000" "3001:9229"];
       };
       uni-verse-frontend = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "ewr.vultrcr.com/vagahbond/uni-verse/frontend";
         dependsOn = ["uni-verse-mongo" "uni-verse-minio" "uni-verse-rabbitmq" "uni-verse-api"];
@@ -59,7 +59,7 @@ in {
         ports = ["3006:3000"];
       };
       uni-verse-mongo = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "docker.io/library/mongo:latest";
         environmentFiles = [
@@ -73,7 +73,7 @@ in {
       };
 
       uni-verse-mongoExpress = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "docker.io/library/mongo-express:latest";
         environmentFiles = [
@@ -83,7 +83,7 @@ in {
         ports = ["8086:8081"];
       };
       uni-verse-minio = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "quay.io/minio/minio:latest";
         environmentFiles = [
@@ -98,7 +98,7 @@ in {
         ports = ["9000:9000" "9001:9001"];
       };
       uni-verse-rabbitmq = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "docker.io/library/rabbitmq:latest";
         environmentFiles = [
@@ -112,7 +112,7 @@ in {
         ports = [];
       };
       uni-verse-elasticsearch = {
-        user = "uni-verse:uni-verse";
+        user = "universe:universe";
         autoStart = true;
         image = "docker.elastic.co/elasticsearch/elasticsearch:8.14.0";
         environment = {
